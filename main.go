@@ -9,7 +9,7 @@ import (
 var db *sql.DB
 
 func init() {
-	tmpDB, err := sql.Open("postgres", "dbname=students_database user=postgres password=JJaRnp5Ten host=postgresql-1575201111.default.svc.cluster.local sslmode=disable")
+	tmpDB, err := sql.Open("postgres", "dbname=rivers_database user=postgres password=postgres host=localhost sslmode=disable")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -19,9 +19,9 @@ func init() {
 func main() {
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("www/assets"))))
 
-	http.HandleFunc("/", handleListStudents)
-	http.HandleFunc("/student.html", handleViewStudent)
-	http.HandleFunc("/save", handleSaveStudent)
-	http.HandleFunc("/delete", handleDeleteStudent)
+	http.HandleFunc("/", handleListRivers)
+	http.HandleFunc("/river.html", handleViewRiver)
+	http.HandleFunc("/save", handleSaveRiver)
+	http.HandleFunc("/delete", handleDeleteRiver)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

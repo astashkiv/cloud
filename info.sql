@@ -16,9 +16,9 @@ CREATE TABLE rivers
 (
  id serial NOT NULL,
  name character varying NOT NULL,
- groups character varying,
- rating integer,
- arrear integer,
+ city character varying,
+ level integer,
+ publication_date date,
  CONSTRAINT pk_rivers PRIMARY KEY (id )
 )
 WITH (

@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="assets/images/favicon.ico">
 
-    <title>Dashboard Template for Bootstrap</title>
+    <title>IOT Early Flood Detection & Avoidance</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -39,7 +39,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">IOT Early Flood Detection & Avoidance</a>
+          <a class="navbar-brand" href="/">Golang Postgres CRUD</a>
         </div>
       </div>
     </nav>
@@ -47,29 +47,29 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-9 col-md-8 col-md-offset-2 main">
-          <h1 class="page-header">Заміри рівня води в річках</h1>
+          <h1 class="page-header">Rivers</h1>
 
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Ім'я</th>
-                  <th>Найближче Місто</th>
-                  <th>Рівень води</th>
-                  <th>Дата заміру</th>
-                  <th>Дії</th>
+                  <th>Name</th>
+                  <th>City</th>
+                  <th>Level</th>
+                  <th>Publication Date</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                {{range .AllStudents}}
+                {{range .AllBooks}}
                 <tr>
                   <td>{{.ID}}</td>
                   <td>{{.Name}}</td>
                   <td>{{.City}}</td>
                   <td>{{.Level}}</td>
-                  <td>{{.Date}}</td>
-                  <td><a href="student.html?id={{.ID}}">edit</a> - <a href="/delete?id={{.ID}}">Видалити</a></td>
+                  <td>{{.PublicationDateStr}}</td>
+                  <td><a href="river.html?id={{.ID}}">edit</a> - <a href="/delete?id={{.ID}}">delete</a></td>
                 </tr>
                 {{end}}
                 <tr>
@@ -78,7 +78,7 @@
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td><a href="student.html" class="btn btn-primary">Додати</a></td>
+                  <td><a href="river.html" class="btn btn-primary">New river</a></td>
                 </tr>
               </tbody>
             </table>

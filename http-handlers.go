@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"strconv"
 	"text/template"
+	"time"
 )
 
 func handleSaveRiver(w http.ResponseWriter, r *http.Request) {
@@ -26,7 +27,7 @@ func handleSaveRiver(w http.ResponseWriter, r *http.Request) {
 	}
 
 	name := params.Get("name")
-	citys := params.Get("citys")
+	city := params.Get("city")
 
 	levelStr := params.Get("level")
 	level := 0
@@ -38,10 +39,11 @@ func handleSaveRiver(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	dateStr := params.Get("date")
-	date := 0
-	if len(dateStr) > 0 {
-		date, err = strconv.Atoi(dateStr)
+	publicationDateStr := params.Get("publicationDate")
+	var publicationDate time.Time
+
+	if len(publicationDateStr) > 0 {
+		publicationDate, err = time.Parse("2006-01-02", publicationDateStr)
 		if err != nil {
 			renderErrorPage(w, err)
 			return
@@ -49,9 +51,9 @@ func handleSaveRiver(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if id == 0 {
-		_, err = insertRiver(name, citys, level, date)
+		_, err = insertRiver(name, city, level, publicationDate)
 	} else {
-		_, err = updateRiver(id, name, citys, level, date)
+		_, err = updateRiver(id, name, city, level, publicationDate)
 	}
 
 	if err != nil {
@@ -86,7 +88,7 @@ func handleViewRiver(w http.ResponseWriter, r *http.Request) {
 	idStr := params.Get("id")
 
 	var currentRiver = River{}
-	//currentRiver.Arrear = time.Now()
+	currentRiver.PublicationDate = time.Now()
 
 	if len(idStr) > 0 {
 		id, err := strconv.Atoi(idStr)
